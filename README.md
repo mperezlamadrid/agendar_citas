@@ -16,7 +16,7 @@ Framework usado: CodeIgniter
 
 Harol Combita
 
-Esya aplicacion para agendar citas consta de 3 modelos:
+Esta aplicacion para agendar citas consta de 3 modelos:
 - Pacientes
 - Medicos
 - Citas
