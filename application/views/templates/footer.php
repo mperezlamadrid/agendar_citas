@@ -1,6 +1,9 @@
-    <footer>
+      </div>
+    </div>
+    <!-- <footer>
       <strong>© 2015 Citas Manuel Perez</strong>
-    </footer>
+    </footer> -->
+
     <style>
       footer{
         background-color: #ccc;
@@ -10,5 +13,8 @@
         width: 96.9%;
       }
     </style>
+
+    <script type="text/javascript" src="<?php echo base_url('js/jquery-1.11.3.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('js/bootstrap.min.js'); ?>"></script>
   </body>
 </html>

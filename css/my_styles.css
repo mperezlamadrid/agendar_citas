@@ -1,0 +1,23 @@
+.container{
+  width: 100%;
+}
+
+.container .inicio{
+  width: 450px;
+  height: 380px;
+}
+
+.row.inicio{
+  width: 100%;
+  height: auto;
+  margin: 20px 0;
+}
+
+.row.inicio .image, .row.inicio .text{
+  width: 49%;
+  display: inline-block;
+}
+
+.row.inicio .image{
+  vertical-align: top;
+}
