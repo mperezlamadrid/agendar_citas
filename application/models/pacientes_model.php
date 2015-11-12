@@ -81,4 +81,9 @@ class Pacientes_model extends CI_Model{
 		$this->db->where("id",$id);
 		$this->db->delete("pacientes");
 	}
+
+  public function get_paciente_by_id($id){
+    $query = $this->db->from('pacientes')->where('id', $id)->limit(1)->get();
+    return $query->result_array()[0];
+  }
 }

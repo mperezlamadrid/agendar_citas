@@ -82,4 +82,9 @@ class Doctores_model extends CI_Model{
 		$this->db->where("id",$id);
 		$this->db->delete("doctores");
 	}
+
+  public function get_doctores_by_id($id){
+    $query = $this->db->from('doctores')->where('id', $id)->limit(1)->get();
+    return $query->result_array()[0];
+  }
 }
