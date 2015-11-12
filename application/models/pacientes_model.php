@@ -1,90 +1,84 @@
-<?php
+<?php if (!defined("BASEPATH")) exit("No puede acceder directamente a este archivo");
 class Pacientes_model extends CI_Model{
 
-  public function __construct(){
-    $this->load->database();
-  }
+  public function listar(){
+		$this->db->select("id, nombre, apellido, direccion, cedula");
+		$this->db->order_by("apellido ASC");
+		$this->db->from("pacientes");
+		$retorno = $this->db->get();
 
-  public function get_paciente_by_id($id){
-    $query = $this->db->from('pacientes')->where('id', $id)->limit(1)->get();
-    return $query->result_array()[0];
-  }
+		return $retorno->result_array();
+	}
 
-  public function get_pacientes(){
-    $query = $this->db->get('pacientes');
-    return $query->result_array();
-  }
+  public function cargar($id){
 
-  public function set_paciente(){
-    $this->load->helper('url');
-    // $this->load->library('session');
+		$this->db->select("id, nombre, apellido, direccion, cedula");
+		$this->db->from("pacientes");
+		$this->db->where("id",$id);
+		$retorno = $this->db->get();
 
-    // $slug = url_title($this->input->post('title'), 'dash', TRUE);
-    $data = array(
-      'nombre'=> $this->input->post('nombre'),
-      'apellido'=> $this->input->post('apellido'),
-      'direccion'=> $this->input->post('direccion'),
-      'cedula'=> $this->input->post('cedula')
-    );
+		return $retorno->row();
 
-    // $this->session->set_userdata('ultima_noticia', $data['title']);
+	}
 
-    return $this->db->insert('pacientes', $data);
-  }
+  public function guardar($nombre, $apellido, $direccion, $cedula){
 
+		$this->db->select("count(*) as cantidad");
+		$this->db->from("pacientes");
+		$this->db->where("cedula",$cedula);
+		$retorno = $this->db->get();
+		$arraydevuelto = $retorno->result_array();
+
+		$cantidad = $arraydevuelto[0]["cantidad"];
+
+		if($cantidad == 0){
+
+			$this->db->insert("pacientes",array(
+				"nombre"=>$nombre,
+				"apellido"=>$apellido,
+				"direccion"=>$direccion,
+        "cedula"=>$cedula
+			));
+
+			return true;
+
+		}
+
+		return false;
+
+	}
+
+  public function actualizar($id, $nombre, $apellido, $direccion, $cedula){
+
+		$this->db->select("count(*) as cantidad");
+		$this->db->from("pacientes");
+		$this->db->where("cedula",$cedula);
+		$this->db->where("id<>",$id);
+		$retorno = $this->db->get();
+		$arraydevuelto = $retorno->result_array();
+
+		$cantidad = $arraydevuelto[0]["cantidad"];
+
+		if($cantidad == 0){
+
+			$this->db->where("id",$id);
+			$this->db->update("pacientes",array(
+				"nombre"=>$nombre,
+				"apellido"=>$apellido,
+				"direccion"=>$direccion,
+        "cedula"=>$cedula
+			));
+
+			return true;
+
+		}
+
+		return false;
+
+	}
+
+  public function eliminar($id){
+		$this->db->where("id",$id);
+		$this->db->delete("pacientes");
+	}
 }
-
-
-//
-// <?php
-// if (!defined('BASEPATH'))
-// 	exit('No direct script access allowed');
-//
-// class Mcrud extends CI_Model {
-//
-// 	function add() {
-// 		$fn = $this->input->post('fn');
-// 		$ln = $this->input->post('ln');
-// 		$ag = $this->input->post('ag');
-// 		$ad = $this->input->post('ad');
-// 		$data = array(
-// 			'firstname' => $fn,
-// 			'lastname' => $ln,
-// 			'age' => $ag,
-// 			'address' => $ad
-// 		);
-// 		$this->db->insert('crud', $data);
-// 	}
-// 	function view() {
-// 		$ambil = $this->db->get('crud');
-// 		if ($ambil->num_rows() > 0) {
-// 			foreach ($ambil->result() as $data) {
-// 				$hasil[] = $data;
-// 			}
-// 			return $hasil;
-// 		}
-// 	}
-// 	function edit($a) {
-// 		$d = $this->db->get_where('crud', array('idcrud' => $a))->row();
-// 		return $d;
-// 	}
-// 	function delete($a) {
-// 		$this->db->delete('crud', array('idcrud' => $a));
-// 		return;
-// 	}
-// 	function update($id) {
-// 		$fn = $this->input->post('fn');
-// 		$ln = $this->input->post('ln');
-// 		$ag = $this->input->post('ag');
-// 		$ad = $this->input->post('ad');
-// 		$data = array(
-// 			'firstname' => $fn,
-// 			'lastname' => $ln,
-// 			'age' => $ag,
-// 			'address' => $ad
-// 		);
-// 		$this->db->where('idcrud', $id);
-// 		$this->db->update('crud', $data);
-// 	}
-// }
-//

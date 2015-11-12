@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined("BASEPATH")) exit("No puede acceder directamente a este archivo");
 class Pacientes extends CI_Controller {
 	public function __construct(){
     parent::__construct();
@@ -6,99 +6,91 @@ class Pacientes extends CI_Controller {
   }
 
 	public function index(){
-		$this->load->helper('url');
+		$pacientes = $this->Pacientes_model->listar();
 
-		$data['title'] = 'Pacientes';
+		$this->load->view("templates/header", array(
+			"title" => "Listado de Pacientes"
+		));
 
-		$this->load->view('templates/header', $data);
-    $this->load->view('pacientes/index', $data);
-    $this->load->view('templates/footer');
+		$this->load->view("pacientes/listado", array(
+			"pacientes" => $pacientes
+		));
+
+		$this->load->view("templates/footer");
 	}
 
-	public function all(){
-		$this->load->helper('url');
+	public function crear(){
+		$this->load->view("templates/header", array(
+			"title" => "Listado de Pacientes"
+		));
 
-		$data['pacientes'] = $this->Pacientes_model->get_pacientes();
-		$data['title'] = 'Todos los pacientes';
+		$paciente = new stdClass();
 
-		$this->load->view('templates/header', $data);
-    $this->load->view('pacientes/all', $data);
-    $this->load->view('templates/footer');
-	}
+		$paciente->nombre = "";
+		$paciente->apellido = "";
+		$paciente->direccion = "";
+		$paciente->cedula = "";
+		$paciente->id = false;
 
-	public function nuevo(){
-		$this->load->helper('form');
-    $this->load->helper('url');
-    $this->load->library('form_validation');
+		$datos = array( "usu"=> $paciente );
 
-    $data['title'] = "Crear Nuevo Paciente";
+		$this->load->view('pacientes/formulario', $datos);
 
-    $this->form_validation->set_rules('nombre', 'Nombre', 'required');
-    $this->form_validation->set_rules('apellido', 'Apellido', 'required');
-		$this->form_validation->set_rules('direccion', 'Direccion', 'required');
-		$this->form_validation->set_rules('cedula', 'Cedula', 'required');
+		$this->load->view("templates/footer");
+  }
 
-    if ($this->form_validation->run() == FALSE) {
-      $this->load->view('templates/header', $data);
-      $this->load->view('pacientes/nuevo');
-      $this->load->view('templates/footer');
+	public function editar($id="0"){
+		if ($id == 0){
+	    show_404();
+		}else{
+			$datos["usu"] = $this->Pacientes_model->cargar($id);
+
+			$this->load->view("templates/header", array(
+				"title" => "Listado de Pacientes"
+			));
+
+	    $this->load->view('pacientes/formulario', $datos);
+
+	    $this->load->view("templates/footer");
+		}
+  }
+
+	public function guardar(){
+    $nombre=$this->input->post("nombre");
+    $apellido=$this->input->post("apellido");
+    $direccion=$this->input->post("direccion");
+		$cedula=$this->input->post("cedula");
+    $id=$this->input->post("id");
+
+    if($id==false){
+  		$resultado=$this->Pacientes_model->guardar(
+	      $nombre,
+	      $apellido,
+	      $direccion,
+				$cedula
+    	);
     }else{
-      $this->Pacientes_model->set_paciente();
-      redirect('/pacientes');
+      $resultado=$this->Pacientes_model->actualizar(
+        $id,
+        $nombre,
+        $apellido,
+				$direccion,
+				$cedula
+    	);
     }
-	}
-}
 
-//
-// class Ccrud extends CI_Controller {
-//
-// 	public function index()
-// 	{
-// 		$data['data_get'] = $this->mcrud->view();
-// 		$this->load->view('header');
-// 		$this->load->view('vcrud', $data);
-// 		$this->load->view('footer');
-// 	}
-// 	function add() {
-// 		$this->load->view('header');
-// 		$this->load->view('vcrudnew');
-// 		$this->load->view('footer');
-// 	}
-// 	function edit() {
-// 		$kd = $this->uri->segment(3);
-// 		if ($kd == NULL) {
-// 			redirect('ccrud');
-// 		}
-// 		$dt = $this->mcrud->edit($kd);
-// 		$data['fn'] = $dt->firstname;
-// 		$data['ln'] = $dt->lastname;
-// 		$data['ag'] = $dt->age;
-// 		$data['ad'] = $dt->address;
-// 		$data['id'] = $kd;
-// 		$this->load->view('header');
-// 		$this->load->view('vcrudedit', $data);
-// 		$this->load->view('footer');
-// 	}
-// 	function delete() {
-// 		$u = $this->uri->segment(3);
-// 		$this->mcrud->delete($u);
-// 		redirect('ccrud');
-// 	}
-// 	function save() {
-// 		if ($this->input->post('mit')) {
-// 			$this->mcrud->add();
-// 			redirect('ccrud');
-// 		} else{
-// 			redirect('ccrud/tambah');
-// 		}
-// 	}
-// 	function update() {
-// 		if ($this->input->post('mit')) {
-// 			$id = $this->input->post('id');
-// 			$this->mcrud->update($id);
-// 			redirect('ccrud');
-// 		} else{
-// 			redirect('ccrud/edit/'.$id);
-// 		}
-// 	}
-// }
+    //listado
+    $this->load->view("templates/header", array(
+			"title" => "Listado de Pacientes"
+		));
+
+    $pacientes = $this->Pacientes_model->listar();
+
+    $this->load->view('pacientes/listado', array(
+      "pacientes"=>$pacientes,
+      "resultado"=>$resultado
+    ));
+
+		$this->load->view("templates/footer");
+  }
+}
