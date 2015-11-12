@@ -9,7 +9,7 @@ class Pacientes extends CI_Controller {
 		$pacientes = $this->Pacientes_model->listar();
 
 		$this->load->view("templates/header", array(
-			"title" => "Listado de Pacientes"
+			"title" => "Pacientes"
 		));
 
 		$this->load->view("pacientes/listado", array(
@@ -21,7 +21,7 @@ class Pacientes extends CI_Controller {
 
 	public function crear(){
 		$this->load->view("templates/header", array(
-			"title" => "Listado de Pacientes"
+			"title" => "Crear Paciente"
 		));
 
 		$paciente = new stdClass();
@@ -46,7 +46,7 @@ class Pacientes extends CI_Controller {
 			$datos["usu"] = $this->Pacientes_model->cargar($id);
 
 			$this->load->view("templates/header", array(
-				"title" => "Listado de Pacientes"
+				"title" => "Editar Paciente"
 			));
 
 	    $this->load->view('pacientes/formulario', $datos);
@@ -81,7 +81,7 @@ class Pacientes extends CI_Controller {
 
     //listado
     $this->load->view("templates/header", array(
-			"title" => "Listado de Pacientes"
+			"title" => "Paciente Guardado"
 		));
 
     $pacientes = $this->Pacientes_model->listar();

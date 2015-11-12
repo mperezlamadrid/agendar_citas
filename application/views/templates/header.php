@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title><?php echo $title; ?> - Agenda Citas</title>
+    <title><?php echo $title; ?></title>
     <link rel="icon" href="<?=base_url()?>favicon.png" type="image/gif">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,10 +50,9 @@
         <li> <a href="<?=base_url('pacientes/index')?>">Pacientes</a> </li>
         <li> <a href="<?=base_url('doctores/index')?>">Medicos</a> </li>
         <li> <a href="<?=base_url('citas/index')?>">Citas</a> </li>
-        <!-- <li> <a href="#">Events</a> </li>
-        <li> <a href="#">About</a> </li>
-        <li> <a href="#">Services</a> </li>
-        <li> <a href="#">Contact</a> </li> -->
+        <span>
+          © 2015 Citas Manuel Perez - Jerson Orozco
+        </span>
       </ul>
     </div>
 

@@ -1,9 +1,5 @@
       </div>
     </div>
-    <!-- <footer>
-      <strong>© 2015 Citas Manuel Perez</strong>
-    </footer> -->
-
     <style>
       footer{
         background-color: #ccc;

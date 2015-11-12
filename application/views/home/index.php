@@ -12,19 +12,19 @@
 <div class="container">
   <div class="row inicio">
     <div class="image">
-      <img class="inicio" src="https://medtechboston.medstro.com/wp-content/uploads/2015/02/shutterstock_133503068.jpg" alt="Salud" />
+      <img class="inicio" src="<?=base_url()?>salud.jpg" alt="Salud" />
     </div>
     <div class="text">
-      <h3>Agendar Citas - MP</h3>
+      <h3>Agendar Citas - MP JO</h3>
 
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Con la aplicacion de Agendar Citas tu puedes crear una lista de pacientes, medicos con los que puedes crear, editar citas con el fin de tener presente esas fechas que puedes olvidar facilmente.
       </p>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Agendar Citas App es una aplicacion escrita en el lenguaje PHP, utilizando frameworks tanto de cliente como servidor como CodeIgniter, Bootstrap. Esta aplicacion es sencilla de usar, tiene una barra de navegacion del lado izquierdo de la pagina donde se puede acceder al panel administrativo de Pacientes, Medicos y Citas.
       </p>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Esta aplicacion fue realizada con la Guia del profesor Harold Combita por los estudiantes Manuel Perez y Jerson Orozco todos pertenencientes a la Universidad de la Costa 'CUC' de Barranquilla - Atlantico en el programa de Ingenieria de Sistemas y ma materia DESARROLLO WEB. Esta aplicacion fue creada con fines educativos unicamente.
       </p>
     </div>
   </div>

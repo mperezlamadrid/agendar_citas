@@ -29,3 +29,15 @@ table{
 table tr td:last-child{
   text-align: center;
 }
+
+#sidebar-wrapper .sidebar-nav{
+  height: 100%;
+}
+
+#sidebar-wrapper .sidebar-nav span{
+  position: absolute;
+    bottom: 0;
+    color: #999;
+    font-size: 11px;
+    margin: 15px;
+}

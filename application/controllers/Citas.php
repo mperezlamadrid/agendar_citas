@@ -11,7 +11,7 @@ class Citas extends CI_Controller {
 		$citas = $this->Citas_model->listar();
 
 		$this->load->view("templates/header", array(
-			"title" => "Listado de Citas"
+			"title" => "Citas"
 		));
 
 		$this->load->view("citas/listado", array(
@@ -23,7 +23,7 @@ class Citas extends CI_Controller {
 
 	public function crear(){
 		$this->load->view("templates/header", array(
-			"title" => "Listado de Citas"
+			"title" => "Crear Cita"
 		));
 
 		$cita = new stdClass();
@@ -53,7 +53,7 @@ class Citas extends CI_Controller {
 			$datos['pacientes'] = $this->Pacientes_model->listar();
 
 			$this->load->view("templates/header", array(
-				"title" => "Listado de Citas"
+				"title" => "Editar Cita"
 			));
 
 	    $this->load->view('citas/formulario', $datos);
@@ -87,7 +87,7 @@ class Citas extends CI_Controller {
 
     //listado
     $this->load->view("templates/header", array(
-			"title" => "Listado de Citas"
+			"title" => "Cita Guardada"
 		));
 
     $citas = $this->Citas_model->listar();

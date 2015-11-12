@@ -9,7 +9,7 @@ class Doctores extends CI_Controller {
 		$doctores = $this->Doctores_model->listar();
 
 		$this->load->view("templates/header", array(
-			"title" => "Listado de Doctores"
+			"title" => "Medicos"
 		));
 
 		$this->load->view("doctores/listado", array(
@@ -21,7 +21,7 @@ class Doctores extends CI_Controller {
 
 	public function crear(){
 		$this->load->view("templates/header", array(
-			"title" => "Listado de Doctores"
+			"title" => "Crear Medico"
 		));
 
 		$doctor = new stdClass();
@@ -47,7 +47,7 @@ class Doctores extends CI_Controller {
 			$datos["usu"] = $this->Doctores_model->cargar($id);
 
 			$this->load->view("templates/header", array(
-				"title" => "Listado de Doctores"
+				"title" => "Editar Medico"
 			));
 
 	    $this->load->view('doctores/formulario', $datos);
@@ -85,7 +85,7 @@ class Doctores extends CI_Controller {
 
     //listado
     $this->load->view("templates/header", array(
-			"title" => "Listado de Doctores"
+			"title" => "Medico Guardado"
 		));
 
     $doctores = $this->Doctores_model->listar();
