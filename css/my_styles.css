@@ -21,3 +21,11 @@
 .row.inicio .image{
   vertical-align: top;
 }
+
+table{
+  margin: 20px 0;
+}
+
+table tr td:last-child{
+  text-align: center;
+}

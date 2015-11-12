@@ -93,4 +93,10 @@ class Pacientes extends CI_Controller {
 
 		$this->load->view("templates/footer");
   }
+
+	function eliminar() {
+		$u = $this->uri->segment(3);
+		$this->Pacientes_model->eliminar($u);
+		redirect('/pacientes/index');
+	}
 }
